@@ -9,8 +9,8 @@ services:
     links:
       - dst_master
     volumes:
-      - ./DSTClusterConfig:/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
-      - ./volumes/mods:/dst/server_dst/mods
+      - ./DSTClusterConfig:/root/.klei/DoNotStarveTogether/DSTWhalesCluster
+      - ./volumes/mods:/root/server_dst/mods
     environment:
       - SHARD_NAME=Caves
     # command: ["tail", "-f", "/dev/null"]
@@ -23,8 +23,8 @@ services:
     ports:
       - 10999:10999/udp
     volumes:
-      - ./DSTClusterConfig:/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
-      - ./volumes/mods:/dst/server_dst/mods
+      - ./DSTClusterConfig:/root/.klei/DoNotStarveTogether/DSTWhalesCluster
+      - ./volumes/mods:/root/server_dst/mods
     environment:
       - SHARD_NAME=Master
     # command: ["tail", "-f", "/dev/null"]
