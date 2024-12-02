@@ -1,7 +1,7 @@
 services:
   dst_caves:
+    build: .
     container_name: dst_caves
-    image: mathielo/dst-dedicated-server:0.3.1
     ports:
       - 10998:10998/udp
     networks:
@@ -9,23 +9,25 @@ services:
     links:
       - dst_master
     volumes:
-      - ./DSTClusterConfig:/home/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
-      - ./volumes/mods:/home/dst/server_dst/mods
+      - ./DSTClusterConfig:/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
+      - ./volumes/mods:/dst/server_dst/mods
     environment:
       - SHARD_NAME=Caves
+    # command: ["tail", "-f", "/dev/null"]
 
   dst_master:
+    build: .
     container_name: dst_master
-    image: mathielo/dst-dedicated-server:0.3.1
     networks:
       - dst_cluster
     ports:
       - 10999:10999/udp
     volumes:
-      - ./DSTClusterConfig:/home/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
-      - ./volumes/mods:/home/dst/server_dst/mods
+      - ./DSTClusterConfig:/dst/.klei/DoNotStarveTogether/DSTWhalesCluster
+      - ./volumes/mods:/dst/server_dst/mods
     environment:
       - SHARD_NAME=Master
+    # command: ["tail", "-f", "/dev/null"]
 
     # These allow to stdin when attaching to the container via `docker attach`
     # Any server commands should be sent to the master shard as it manages its slaves (Caves)
@@ -34,4 +36,3 @@ services:
 
 networks:
   dst_cluster:
-
