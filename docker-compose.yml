@@ -1,6 +1,7 @@
 services:
   dst_caves:
     build: .
+    image: dst_image:latest
     container_name: dst_caves
     ports:
       - 10998:10998/udp
@@ -17,6 +18,7 @@ services:
 
   dst_master:
     build: .
+    image: dst_image:latest
     container_name: dst_master
     networks:
       - dst_cluster
